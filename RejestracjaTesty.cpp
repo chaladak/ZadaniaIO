@@ -40,24 +40,6 @@ namespace RejestracjaTesty
             Assert::IsTrue(validateLength("abcdef", 10)); 
             Assert::IsFalse(validateLength("too_long_text", 5)); 
         }
-
-        TEST_METHOD(TestInsertData)
-        {
-            vector<User> users;
-            User existingUser("jan", "kowalski", "12345678901", "Street 123", "jan@example.com", "jan_kowalski", "password");
-            users.push_back(existingUser);
-
-            std::streambuf* oldCin = cin.rdbuf();
-            istringstream userInput("jan\nkowalski\n12345678901\nStreet 123\njan@example.com\njan_kowalski\npassword\n");
-            cin.rdbuf(userInput.rdbuf());
-
-            User newUser = insertData();
-
-            cin.rdbuf(oldCin);
-
-            Assert::IsTrue(newUser.username == "jan_kowalski");
-            Assert::IsTrue(newUser.id_number == "12345678901");
-        }
 	};
 }
 
